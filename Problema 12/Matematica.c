@@ -1,6 +1,6 @@
-#include"Matematica.h"
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "Matematica.h"
 
 struct fdiv
 {
@@ -8,13 +8,20 @@ struct fdiv
     int expoente;
 };
 
+long int numeroTriangular(int n)
+{
+    // somátorio de 1 até n
+    return (n*(n+1))/2;
+}
+
 int* fatoracao(int n,int *pos)
 {
 // n é o número, e vet será o vetor que conterá os divisores
     int *vet = (int*)malloc(sizeof(int));
     int i = 2;
 
-    (*pos) = 0;
+    *pos=0;
+
     while(n != 1)
     {
         if((n % i) == 0)
@@ -30,13 +37,13 @@ int* fatoracao(int n,int *pos)
     return vet;
 }
 
-int conta(int *vet,int pos)
+int conta(int *vet,int m)
 {
     int i,cont=0;
 
-    for (i = 0; i < pos; i++)
+    for (i = 0; i < m; i++)
     {
-        if(vet[i] != vet[i+1])
+        if(vet[i] != vet[i-1])
             cont++;
     }
     return cont;
@@ -48,7 +55,7 @@ Fdiv fDivisores(int *vet, int m,int tamanho)
 
     int aux[tamanho];
 
-    Fdiv resp = (Fdiv)malloc(tamanho*sizeof(struct fdiv));
+    Fdiv resp = (Fdiv)malloc((tamanho)*sizeof(struct fdiv));
 
     for(i = 0; i < m; i++)
     {
@@ -59,7 +66,7 @@ Fdiv fDivisores(int *vet, int m,int tamanho)
         }
         if(existe(aux,vet[i],tamanho) == 0)
         {
-            resp = inserir(resp, vet[i], cont, pos,tamanho);
+            resp = inserir(resp, vet[i], cont, pos);
             aux[pos] = vet[i];
             pos += 1;
         }
@@ -68,8 +75,9 @@ Fdiv fDivisores(int *vet, int m,int tamanho)
     return resp;
 }
 
-Fdiv inserir(Fdiv resp,int x,int y, int pos,int tamanho)
+Fdiv inserir(Fdiv resp,int x,int y, int pos)
 {
+    
     resp[pos].base = x;
     resp[pos].expoente = y;
     return resp;
