@@ -1,7 +1,0 @@
-Fatoração -> retorna uma lista com o resultado da fatoração do número
-Conta -> retorna o numero de divisores diferentes (fatores primos)
-fDivisores -> retorna uma vetor que contém a equação de formação dos divisores com base e expoente
-inserir -> insere um novo numero no vetor de divisões
-existe -> busca um elemento em um vetor, para não calcular duas vezes a quantidade de um mesmo fator primo
-imprime -> função auxiliar para imprimir a fatoração de um número
-totalDivisores -> calcula a quantidade de divisores
